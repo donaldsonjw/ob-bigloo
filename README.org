@@ -31,10 +31,9 @@ Figure [[fig:header_arg_example]] demonstrates the use of both. The value of bot
 
 #+name: fig:header_arg_example
 #+caption: Bigloo Header Argument Example
-:#+begin_src bigloo :flags -O6 :library '(srfi158 srfi117)
-:  (generator->list (circular-generator 1 2 3) 5)
-:#+end_src 
-
+: #+begin_src bigloo :flags -O6 :library '(srfi158 srfi117)
+: : (generator->list (circular-generator 1 2 3) 5)
+: #+end_src 
 
 
 ** Examples
