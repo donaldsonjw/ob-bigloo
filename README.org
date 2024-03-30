@@ -70,7 +70,7 @@ Inputs are not limited to simple variables. The next example uses an Org table o
 :         1
 :         (+ (fibonacci (- n 1))
 :            (fibonacci (- n 2)))))
-:
+: 
 :  (list->vector (map (lambda (row) (map fibonacci row)) fib-inputs))
 : #+end_src
 
