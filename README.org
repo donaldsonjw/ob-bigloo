@@ -32,7 +32,7 @@ Figure [[fig:header_arg_example]] demonstrates the use of both. The value of bot
 #+name: fig:header_arg_example
 #+caption: Bigloo Header Argument Example
 : #+begin_src bigloo :flags -O6 :library '(srfi158 srfi117)
-: : (generator->list (circular-generator 1 2 3) 5)
+:  (generator->list (circular-generator 1 2 3) 5)
 : #+end_src 
 
 
@@ -42,56 +42,56 @@ Below are a couple example Bigloo Babel code blocks.
 
 In the first example, we introduce a named block which takes a single argument =x= with a default value of 0. Executing the block alone results, as expected, in 2.
 
-#+name: plus2 
-#+begin_src bigloo :var x=0  
-  (+ 2 x)
-#+end_src 
-
-#+RESULTS: plus2
+: #+name: plus2 
+: #+begin_src bigloo :var x=0  
+:  (+ 2 x)
+: #+end_src 
+:
+: #+RESULTS: plus2
 : 2
 
 But being named also allows us to call =plus2= with arbitrary values for =x=, 33 in the call below.
 
-#+call: plus2(x = 33)
-
-#+RESULTS:
+: #+call: plus2(x = 33)
+:
+: #+RESULTS:
 : 35
 
 Inputs are not limited to simple variables. The next example uses an Org table of values as input. The =fionacci-sequence= code block takes this table and computes the fibonacci number for each of its entries.
 
-#+tblname: fibonacci-inputs
-| 1 | 2 | 3 | 4 |  5 |  6 |  7 |  8 |  9 | 10 |
-| 2 | 4 | 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 |
+: #+tblname: fibonacci-inputs
+: | 1 | 2 | 3 | 4 |  5 |  6 |  7 |  8 |  9 | 10 |
+: | 2 | 4 | 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 |
 
-#+name: fibonacci-sequence
-#+begin_src bigloo :var fib-inputs=fibonacci-inputs
-  (define (fibonacci n)
-     (if (or (= n 0) (= n 1))
-         1
-         (+ (fibonacci (- n 1))
-            (fibonacci (- n 2)))))
+: #+name: fibonacci-sequence
+: #+begin_src bigloo :var fib-inputs=fibonacci-inputs
+:  (define (fibonacci n)
+:     (if (or (= n 0) (= n 1))
+:         1
+:         (+ (fibonacci (- n 1))
+:            (fibonacci (- n 2)))))
+:
+:  (list->vector (map (lambda (row) (map fibonacci row)) fib-inputs))
+: #+end_src
 
-  (list->vector (map (lambda (row) (map fibonacci row)) fib-inputs))
-#+end_src
-
-#+RESULTS: fibonacci-sequence
-| 1 | 2 |  3 |  5 |  8 |  13 |  21 |   34 |   55 |    89 |
-| 2 | 5 | 13 | 34 | 89 | 233 | 610 | 1597 | 4181 | 10946 |
+: #+RESULTS: fibonacci-sequence
+: | 1 | 2 |  3 |  5 |  8 |  13 |  21 |   34 |   55 |    89 |
+: | 2 | 5 | 13 | 34 | 89 | 233 | 610 | 1597 | 4181 | 10946 |
 
 
 
 It is also possible to produce output files.
 
-#+begin_src bigloo :results output file :file output.csv 
-  (do ((i 0 (+ i 1)))
-      ((= i 11))
-    (do ((j 0 (+ j 1)))
-        ((= j 11))
-        (printf "~a,~a~%" i j)))
-#+end_src 
+: #+begin_src bigloo :results output file :file output.csv 
+:  (do ((i 0 (+ i 1)))
+:      ((= i 11))
+:    (do ((j 0 (+ j 1)))
+:        ((= j 11))
+:        (printf "~a,~a~%" i j)))
+: #+end_src 
 
-#+RESULTS:
-[[file:output.csv]]
+: #+RESULTS:
+: [[file:output.csv]]
  
 
 Please see the [[https://orgmode.org/worg/org-contrib/babel/][Babel documentation]] for more detail.  
