@@ -46,14 +46,14 @@ In the first example, we introduce a named block which takes a single argument =
 : #+begin_src bigloo :var x=0  
 :  (+ 2 x)
 : #+end_src 
-:
+: 
 : #+RESULTS: plus2
 : 2
 
 But being named also allows us to call =plus2= with arbitrary values for =x=, 33 in the call below.
 
 : #+call: plus2(x = 33)
-:
+: 
 : #+RESULTS:
 : 35
 
